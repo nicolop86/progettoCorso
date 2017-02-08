@@ -1,13 +1,14 @@
 package resources;
 
 import java.util.Date;
-import java.util.Hashtable;
+import java.util.HashMap;
+
 //import org.joda.time.DateTime;
 import users.User;
 
 public class ResourceManager <T extends Resource> {
 	
-	private Hashtable<Integer, T> resourceColl = new Hashtable<>();
+	private HashMap<Integer, T> resourceColl = new HashMap<>();
 
 	public int addNewElement(T aResource) {
 		resourceColl.put(aResource.getID(), aResource);
@@ -16,6 +17,10 @@ public class ResourceManager <T extends Resource> {
 	
 	public T getElement(int ID) {
 		return resourceColl.get(ID);
+	}
+	
+	public int countElement() {
+		return resourceColl.size();
 	}
 	
 	public int rentResource(int ID, User user, Date dateStart, Date dateFinish) {

@@ -6,7 +6,7 @@ import users.User;
 
 public abstract class Resource {
 	
-	private static int COUNTER = 0;
+	public static int COUNTER = 0;
 	private int ID;
 	private boolean isAvailable;
 	private Date dateStart;
@@ -14,9 +14,10 @@ public abstract class Resource {
 	private User user;
 	
 	public Resource() {
-		this.ID = COUNTER++;
+		this.ID = COUNTER;
 		this.isAvailable = true;
 		user = null;
+		COUNTER++;
 	}
 
 	public boolean isAvailable() {
@@ -44,7 +45,7 @@ public abstract class Resource {
 	}
 
 	public int getID() {
-		return this.ID;
+		return ID;
 	}
 	
 	public abstract String toString();
