@@ -6,8 +6,8 @@ public class Car extends Resource {
 	private int nSeats;
 	private int nDrivers;
 
-	public Car(String NUMBERPLATE, int nSeats, int nDrivers) {
-		super();
+	public Car(int ID, String NUMBERPLATE, int nSeats, int nDrivers) {
+		super(ID);
 		this.NUMBERPLATE = NUMBERPLATE;
 		this.nSeats = nSeats;
 		this.nDrivers = nDrivers;

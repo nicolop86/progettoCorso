@@ -1,31 +1,16 @@
 package resources;
 
 import java.util.Date;
+import identifier.Identifiable;
 
-import users.User;
-
-public abstract class Resource {
+public abstract class Resource implements Identifiable<Integer> {
 	
-	public static int COUNTER = 0;
 	private int ID;
-	private boolean isAvailable;
 	private Date dateStart;
 	private Date dateFinish;
-	private User user;
 	
-	public Resource() {
-		this.ID = COUNTER;
-		this.isAvailable = true;
-		user = null;
-		COUNTER++;
-	}
-
-	public boolean isAvailable() {
-		return isAvailable;
-	}
-
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
+	public Resource(int ID) {
+		this.ID = ID;
 	}
 
 	public Date getDateStart() {
@@ -44,18 +29,10 @@ public abstract class Resource {
 		this.dateFinish = dateFinish;
 	}
 
-	public int getID() {
-		return ID;
+	public Integer getID() {
+		return Integer.valueOf(ID);
 	}
 	
 	public abstract String toString();
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 }

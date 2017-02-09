@@ -6,8 +6,8 @@ public class Laptop extends Resource {
 	private int nCores;
 	private final String BRAND;
 
-	public Laptop(int ram, int nCores, String BRAND){
-		super();
+	public Laptop(int ID, int ram, int nCores, String BRAND){
+		super(ID);
 		this.ram = ram;
 		this.nCores = nCores;
 		this.BRAND = BRAND;
@@ -23,6 +23,7 @@ public class Laptop extends Resource {
 	public int getnCores() {
 		return nCores;
 	}
+	
 	public void setnCores(int nCores) {
 		this.nCores = nCores;
 	}

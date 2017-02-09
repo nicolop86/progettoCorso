@@ -1,10 +1,6 @@
 package resources;
 
-import java.util.Date;
 import java.util.HashMap;
-
-//import org.joda.time.DateTime;
-import users.User;
 
 public class ResourceManager <T extends Resource> {
 	
@@ -23,16 +19,5 @@ public class ResourceManager <T extends Resource> {
 		return resourceColl.size();
 	}
 	
-	public int rentResource(int ID, User user, Date dateStart, Date dateFinish) {
-		T aResource = resourceColl.get(ID);
-		if(aResource!=null && aResource.isAvailable()) {
-			aResource.setAvailable(false);
-			aResource.setUser(user);
-			aResource.setDateStart(dateStart);
-			aResource.setDateFinish(dateFinish);
-			return 1;
-		} else {
-			return -1;
-		}
-	}
+	
 }
