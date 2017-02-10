@@ -8,12 +8,12 @@ import users.User;
 public class Booking implements Identifiable<Integer> {
 	
 	private User user;
-	private Resource resource;
+	private Resource<?> resource;
 	private Date dateStart;
 	private Date dateFinish;
 	private int ID;
 	
-	public Booking(User user, Resource resource, Date dateStart, Date dateFinish, int ID) {
+	public Booking(User user, Resource<?> resource, Date dateStart, Date dateFinish, int ID) {
 		this.setUser(user);
 		this.setResource(resource);
 		this.setDateStart(dateStart);
@@ -29,11 +29,11 @@ public class Booking implements Identifiable<Integer> {
 		this.user = user;
 	}
 
-	public Resource getResource() {
+	public Resource<?> getResource() {
 		return resource;
 	}
 
-	public void setResource(Resource resource) {
+	public void setResource(Resource<?> resource) {
 		this.resource = resource;
 	}
 

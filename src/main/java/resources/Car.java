@@ -1,6 +1,6 @@
 package resources;
 
-public class Car extends Resource {
+public class Car extends Resource<Car> {
 
 	private final String NUMBERPLATE;
 	private int nSeats;
@@ -38,4 +38,13 @@ public class Car extends Resource {
 				"\nNumber of seats: " + this.getnSeats()+ "\nNumber of drivers: " + this.getnDrivers());
 		return s;
 	}
+
+	public boolean equals(Car c) {
+		if (this.getID() == c.getID()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

@@ -1,6 +1,6 @@
 package resources;
 
-public class Laptop extends Resource {
+public class Laptop extends Resource<Laptop> {
 
 	private int ram;
 	private int nCores;
@@ -36,6 +36,14 @@ public class Laptop extends Resource {
 		String s = ("Laptop ID: " + this.getID() + "\nBrand: " + this.getBRAND() +
 				"\nNumber of cores: " + this.getnCores() + "\nRAM: " + this.getRam());
 		return s;
+	}
+	
+	public boolean equals(Laptop pc){
+		if (this.getID() == pc.getID()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

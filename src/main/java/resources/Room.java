@@ -1,6 +1,6 @@
 package resources;
 
-public class Room extends Resource {
+public class Room extends Resource<Room> {
 
 	private int capacity;
 	private String name;
@@ -32,4 +32,13 @@ public class Room extends Resource {
 				"\nRoom name: " + this.getName());
 		return s;
 	}
+	
+	public boolean equals(Room room){
+		if (this.getID() == room.getID()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

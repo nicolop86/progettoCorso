@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import dao.DAO;
+import managers.Manager;
 import resources.*;
 
 public class TestResources {
@@ -39,23 +41,24 @@ public class TestResources {
 	@Test
 	public void test() {
 		DAO <Integer, Resource> daoRes = new DAO<Integer, Resource>(resList);
-		Assert.assertEquals(true, daoRes.createRecord(c1));
-		Assert.assertEquals(false, daoRes.createRecord(c2));
-		Assert.assertEquals(true, daoRes.createRecord(room2));
-		Assert.assertEquals(true, daoRes.createRecord(proj1));
-		Assert.assertEquals(true, daoRes.createRecord(pc2));
+		Manager<Integer, Resource> resourceManager = new Manager<Integer, Resource>(daoRes);
+		Assert.assertEquals(true, resourceManager.createRecord(c1));
+		Assert.assertEquals(false, resourceManager.createRecord(c2));
+		Assert.assertEquals(true, resourceManager.createRecord(room2));
+		Assert.assertEquals(true, resourceManager.createRecord(proj1));
+		Assert.assertEquals(true, resourceManager.createRecord(pc2));
 		pc2.setRam(8);
 		c2.setnDrivers(2);
 		room1.setName("Orange Room");
 		Laptop pc3 = new Laptop(8, 12, 4, "Samsung");
-		Assert.assertEquals(true, daoRes.updateRecord(pc2));
-		Assert.assertEquals(true, daoRes.updateRecord(c2));
-		Assert.assertEquals(false, daoRes.updateRecord(pc3));
-		Assert.assertEquals(true, daoRes.updateRecord(room1));
-		Assert.assertEquals(false, daoRes.deleteRecord(pc3));
-		Assert.assertEquals(true, daoRes.deleteRecord(pc2));
+		Assert.assertEquals(true, resourceManager.updateRecord(pc2));
+		Assert.assertEquals(true, resourceManager.updateRecord(c2));
+		Assert.assertEquals(false, resourceManager.updateRecord(pc3));
+		Assert.assertEquals(true, resourceManager.updateRecord(room1));
+		Assert.assertEquals(false, resourceManager.deleteRecord(pc3));
+		Assert.assertEquals(true, resourceManager.deleteRecord(pc2));
 		
-		ArrayList<Resource> tempResList = daoRes.getAll();
+		ArrayList<Resource> tempResList = resourceManager.getAllRecords();
 		System.out.println("=============");
 		for (Resource resource : tempResList) {
 			System.out.println(resource.toString());

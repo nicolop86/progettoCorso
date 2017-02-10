@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import dao.DAO;
+import managers.Manager;
 import users.*;
 
 public class TestUsers {
@@ -27,22 +28,23 @@ public class TestUsers {
 	@Test
 	public void test() {
 		DAO <String, User> daoUsers = new DAO<String, User>();
-		Assert.assertEquals(true, daoUsers.createRecord(u1));
+		Manager<String, User> userManager = new Manager<String, User>(daoUsers);
+		Assert.assertEquals(true, userManager.createRecord(u1));
 		u2 = new User("Luca", "Rossi", "LCARSS88H01B549V",
 				new DateTime(1988, 6, 1, 0, 0).toDate(),"luca.rossi", "pippa");
-		Assert.assertEquals(true, daoUsers.createRecord(u2));
-		Assert.assertEquals(true, daoUsers.createRecord(admin1));
-		Assert.assertEquals(false, daoUsers.createRecord(u2));
+		Assert.assertEquals(true, userManager.createRecord(u2));
+		Assert.assertEquals(true, userManager.createRecord(admin1));
+		Assert.assertEquals(false, userManager.createRecord(u2));
 
 		admin2 = new Administrator("Paolo", "Verdi", "PLAVRD66B17E190R",
 				new DateTime(1966, 5, 17, 0, 0).toDate(), "pverdi", "paperino");
 		
-		Assert.assertEquals(false, daoUsers.createRecord(admin2));
+		Assert.assertEquals(false, userManager.createRecord(admin2));
 		admin1.setPwd("pluto");
-		Assert.assertEquals(true, daoUsers.updateRecord(admin1));
-		Assert.assertEquals(true, daoUsers.deleteRecord(u1));
+		Assert.assertEquals(true, userManager.updateRecord(admin1));
+		Assert.assertEquals(true, userManager.deleteRecord(u1));
 		
-		ArrayList<User> tempUsersList = daoUsers.getAll();
+		ArrayList<User> tempUsersList = userManager.getAllRecords();
 		System.out.println("============");
 		for (User user : tempUsersList) {
 			System.out.println(user.toString());
