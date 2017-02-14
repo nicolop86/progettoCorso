@@ -43,7 +43,7 @@ public class BookingManager extends Manager<Integer, Booking>{
 				return true;
 			} else {
 			for (Integer integer : temp) {
-				/*If it exists in booking, then return with false*/
+				/*If it exists in booking and dates overlap, then return with false*/
 				Booking tempBook = tMap.get(integer);
 				if(dateOverlapping(tempBook.getDateStart(),	b.getDateStart(),
 						tempBook.getDateFinish(), b.getDateFinish())) {
@@ -51,9 +51,13 @@ public class BookingManager extends Manager<Integer, Booking>{
 				}
 			}
 			}
-			/*If it exists but dates do not overlap, then add reservation*/
+			/*If it exists but dates do not overlap, check if it is in house and then add reservation*/
+			if (check(b)) {
 			dao.createRecord(b);
 			return true;
+			} else {
+				return false;
+			}
 		}
 	}
 	
@@ -67,6 +71,11 @@ public class BookingManager extends Manager<Integer, Booking>{
 		} else {
 			return false;
 		}
+	}
+	
+	/*Method to check availability of a resource*/
+	public boolean check(Booking b) {
+		return b.getResource().isAvailable();
 	}
 	
 	private boolean dateOverlapping(Date ds1, Date ds2, Date df1, Date df2) {

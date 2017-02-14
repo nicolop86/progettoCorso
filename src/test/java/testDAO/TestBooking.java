@@ -2,16 +2,12 @@ package testDAO;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.TreeMap;
-
 import org.joda.time.DateTime;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import booking.Booking;
 import dao.DAO;
 import managers.BookingManager;
-import managers.Manager;
 import resources.Car;
 import resources.Laptop;
 import users.User;
