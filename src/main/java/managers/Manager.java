@@ -18,7 +18,7 @@ public class Manager <K, T extends Identifiable<?>> {
 	public boolean createRecord(T t) {
 		TreeMap<K, T> tMap = dao.getMap();
 		if(tMap.containsKey((K) t.getID())){
-			System.err.println("Error: ID already exists!");
+			System.err.println("Error: ID already exists!\n");
 			return false;	
 		} else {
 			dao.createRecord(t);

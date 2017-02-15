@@ -64,7 +64,7 @@ public class BookingManager extends Manager<Integer, Booking>{
 	public boolean updateRecord(Booking b){
 		TreeMap<Integer, Booking> tMap = dao.getMap();
 		if(tMap.containsKey(b.getID()) && 
-				dateOverlapping(tMap.get(b.getID()).getDateStart(), b.getDateStart(),
+				!dateOverlapping(tMap.get(b.getID()).getDateStart(), b.getDateStart(),
 						tMap.get(b.getID()).getDateFinish(), b.getDateFinish())){
 			dao.updateRecord(b);
 			return true;
