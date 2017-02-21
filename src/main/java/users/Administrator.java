@@ -10,23 +10,5 @@ public class Administrator extends User {
 		super(name, surname, identifier, birthday, userName, pwd, uManager);
 		this.setAdmin(true);
 	}
-
-	public boolean updateUser(User u) {
-		if (this.isLogged()) {
-		return uManager.updateRecord(u);
-		}
-		else {
-			return false;
-		}
-	}
-
-	public boolean deleteUser(User u){
-		if (this.isLogged()) {
-		return uManager.deleteRecord(u);
-		}
-		else {
-			return false;
-		}
-	}
 	
 }

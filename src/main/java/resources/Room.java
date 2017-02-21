@@ -41,4 +41,12 @@ public class Room extends Resource<Room> {
 		}
 	}
 	
+	public boolean constraint(int capacity) {
+		if(this.capacity>=capacity){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

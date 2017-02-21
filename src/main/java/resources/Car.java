@@ -46,5 +46,13 @@ public class Car extends Resource<Car> {
 			return false;
 		}
 	}
+	
+	public boolean constraint(int nSeat) {
+		if (this.nSeats>=nSeat) {
+		return true;
+		} else {
+			return false;
+		}
+	}
 
 }

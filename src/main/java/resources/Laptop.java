@@ -45,5 +45,13 @@ public class Laptop extends Resource<Laptop> {
 			return false;
 		}
 	}
+	
+	public boolean constraint(int ram) {
+		if(this.ram>=ram){
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

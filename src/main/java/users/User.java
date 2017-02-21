@@ -7,7 +7,7 @@ import managers.UserManager;
 
 public class User implements Identifiable<String> {
 
-	private final String userName;
+	private String userName;
 	private String pwd;
 	private String name;
 	private String surname;
@@ -15,7 +15,6 @@ public class User implements Identifiable<String> {
 	private Date birthday;
 	private boolean isAdmin;
 	private boolean logged;
-	protected final UserManager uManager;
 	
 	public User (String name, String surname, String identifier,
 			Date birthday, String userName, String pwd, UserManager uManager) {
@@ -27,7 +26,6 @@ public class User implements Identifiable<String> {
 		this.setPwd(pwd);
 		this.isAdmin = false;
 		this.logged = false;
-		this.uManager = uManager;
 	}
 	
 	public String getName() {
@@ -60,6 +58,10 @@ public class User implements Identifiable<String> {
 	public String getUserName() {
 		return userName;
 	}
+	
+	public void setUserName(String userName) {
+		this.userName=userName;
+	}
 
 	public String getPwd() {
 		return pwd;
@@ -83,24 +85,20 @@ public class User implements Identifiable<String> {
 				new DateTime(this.getBirthday()).dayOfMonth().roundFloorCopy().toString());
 	}
 
+	public boolean equals(User u){
+		if(this.getID().equals(u.getID()))
+			return true;
+		else {
+			return false;
+		}
+	}
+
 	public boolean isLogged() {
 		return logged;
 	}
 
 	public void setLogged(boolean logged) {
 		this.logged = logged;
-	}
-	
-	public boolean login() {
-		return uManager.login(this);
-	}
-	
-	public boolean register() {
-		return uManager.createRecord(this);
-	}
-	
-	public boolean logout() {
-		return uManager.logout(this);
 	}
 	
 }
