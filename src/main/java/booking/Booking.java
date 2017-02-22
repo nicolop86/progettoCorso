@@ -12,6 +12,7 @@ public class Booking implements Identifiable<Integer> {
 	private Date dateStart;
 	private Date dateFinish;
 	private int ID;
+	private boolean closed;
 	
 	public Booking(User user, Resource<?> resource, Date dateStart, Date dateFinish, int ID) {
 		this.setUser(user);
@@ -19,6 +20,7 @@ public class Booking implements Identifiable<Integer> {
 		this.setDateStart(dateStart);
 		this.setDateFinish(dateFinish);
 		this.setID(ID);
+		this.setClosed(false);
 	}
 
 	public User getUser() {
@@ -65,6 +67,14 @@ public class Booking implements Identifiable<Integer> {
 		return("Reservation: " + this.getID() + "\n" + resource.toString() +
 				"\n" + user.toString() + "\nDate Start: " + this.dateStart.toString() + 
 				"\nDate Finish: " + this.dateFinish.toString());
+	}
+
+	public boolean isClosed() {
+		return closed;
+	}
+
+	public void setClosed(boolean closed) {
+		this.closed = closed;
 	}
 
 }

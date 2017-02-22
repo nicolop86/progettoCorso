@@ -47,7 +47,7 @@ public class Car extends Resource<Car> {
 		}
 	}
 	
-	public boolean constraint(int nSeat) {
+	public boolean selectByConstratint(int nSeat) {
 		if (this.nSeats>=nSeat) {
 		return true;
 		} else {

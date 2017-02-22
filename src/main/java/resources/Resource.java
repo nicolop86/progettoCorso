@@ -18,7 +18,7 @@ public abstract class Resource<T extends Resource<?>> implements Identifiable<In
 
 	public abstract String toString();
 	public abstract boolean equals(T t);
-	public abstract boolean constraint(int param);
+	public abstract boolean selectByConstratint(int param);
 
 	public boolean isAvailable() {
 		return isAvailable;

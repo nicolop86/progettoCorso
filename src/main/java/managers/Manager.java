@@ -9,7 +9,7 @@ import identifier.Identifiable;
 
 public class Manager <K, T extends Identifiable<?>> {
 
-	DAO<K, T> dao;
+	protected DAO<K, T> dao;
 
 	public Manager(DAO<K, T> dao) {
 		this.dao = dao;

@@ -37,7 +37,7 @@ public class Projector extends Resource<Projector> {
 		}
 	}
 
-	public boolean constraint(int nColors) {
+	public boolean selectByConstratint(int nColors) {
 		if(this.nColors>=nColors){
 			return true;
 		} else {

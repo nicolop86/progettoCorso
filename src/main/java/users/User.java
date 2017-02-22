@@ -2,6 +2,9 @@ package users;
 
 import java.util.Date;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import identifier.Identifiable;
 import managers.UserManager;
 
@@ -15,6 +18,7 @@ public class User implements Identifiable<String> {
 	private Date birthday;
 	private boolean isAdmin;
 	private boolean logged;
+	private boolean penalty;
 	
 	public User (String name, String surname, String identifier,
 			Date birthday, String userName, String pwd, UserManager uManager) {
@@ -26,6 +30,7 @@ public class User implements Identifiable<String> {
 		this.setPwd(pwd);
 		this.isAdmin = false;
 		this.logged = false;
+		this.penalty = false;
 	}
 	
 	public String getName() {
@@ -80,9 +85,9 @@ public class User implements Identifiable<String> {
 	}
 
 	public String toString() {
+		DateTimeFormatter dtfOut = DateTimeFormat.forPattern("dd-MM-yyyy");
 		return("Name: " + this.getName() + "\nSurname: " + this.getSurname() + "\nIdentifier: " + 
-	this.getID() + "\nBirth date: " +
-				new DateTime(this.getBirthday()).dayOfMonth().roundFloorCopy().toString());
+	this.getID() + "\nBirth date: " + dtfOut.print(new DateTime(this.getBirthday())));
 	}
 
 	public boolean equals(User u){
@@ -99,6 +104,14 @@ public class User implements Identifiable<String> {
 
 	public void setLogged(boolean logged) {
 		this.logged = logged;
+	}
+
+	public boolean isPenalty() {
+		return penalty;
+	}
+
+	public void setPenalty(boolean penalty) {
+		this.penalty = penalty;
 	}
 	
 }
