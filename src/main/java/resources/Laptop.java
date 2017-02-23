@@ -34,7 +34,8 @@ public class Laptop extends Resource<Laptop> {
 	
 	public String toString() {
 		String s = ("Laptop ID: " + this.getID() + "\nBrand: " + this.getBRAND() +
-				"\nNumber of cores: " + this.getnCores() + "\nRAM: " + this.getRam());
+				"\nNumber of cores: " + this.getnCores() + "\nRAM: " + this.getRam() +
+				"\nAvailable: " + this.isAvailable());
 		return s;
 	}
 	
@@ -46,7 +47,7 @@ public class Laptop extends Resource<Laptop> {
 		}
 	}
 	
-	public boolean selectByConstratint(int ram) {
+	public boolean selectByConstratin(int ram) {
 		if(this.ram>=ram){
 			return true;
 		} else {

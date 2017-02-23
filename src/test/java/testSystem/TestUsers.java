@@ -1,4 +1,4 @@
-package testDAO;
+package testSystem;
 
 import java.util.ArrayList;
 
@@ -27,13 +27,13 @@ public class TestUsers {
 	daoUsers = new DAO<String, User>();
 	uManager = new UserManager(daoUsers);
 	u1 = new User("Nicolò", "Politi", "PLTNCL86H01M109C",
-			new DateTime(1986, 6, 1, 0, 0).toDate(),"nicolo.politi", "pippo", uManager);
+			new DateTime(1986, 6, 1, 0, 0).toDate(),"nicolo.politi", "pippo");
 	admin1 = new Administrator("Paolo", "Verdi", "PLAVRD66B17E190R",
-				new DateTime(1966, 5, 17, 0, 0).toDate(), "pverdi", "paperino", uManager);
+				new DateTime(1966, 5, 17, 0, 0).toDate(), "pverdi", "paperino");
 	u2 = new User("Luca", "Rossi", "LCARSS88H01B549V",
-			new DateTime(1988, 6, 1, 0, 0).toDate(),"luca.rossi", "pippa", uManager);
+			new DateTime(1988, 6, 1, 0, 0).toDate(),"luca.rossi", "pippa");
 	admin2 = new Administrator("Giovanni", "Blu", "GVNBLU66B17E190R",
-			new DateTime(1966, 5, 17, 0, 0).toDate(), "gblu", "pippa", uManager);
+			new DateTime(1966, 5, 17, 0, 0).toDate(), "gblu", "pippa");
 	anArrayOfUsers.add(u1);
 	anArrayOfUsers.add(u2);
 	}
@@ -52,7 +52,7 @@ public class TestUsers {
 		Assert.assertEquals(u1, uManager.getElement("PLTNCL86H01M109C"));
 		Assert.assertEquals(true, uManager.updateRecord(new User("Niccolò",
 				"Politi", "PLTNCL86H01M109C", new DateTime(1986, 6, 1, 0, 0).toDate(),
-				"nicolo.politi", "pippo", uManager)));
+				"nicolo.politi", "pippo")));
 		Assert.assertEquals(false, uManager.updateRecord(u2));
 		Assert.assertEquals(true, uManager.createRecord(u2));
 		Assert.assertEquals(false, uManager.createRecord(u2));

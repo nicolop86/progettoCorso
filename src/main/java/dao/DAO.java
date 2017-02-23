@@ -30,6 +30,10 @@ public class DAO <K, T extends Identifiable<?>> {
 		tMap.remove((K) t.getID());
 		}
 	
+	public void deleteRecord(K ID) {
+		tMap.remove(ID);
+		}
+	
 	public TreeMap<K, T> getMap() {
 		return this.tMap;
 	}

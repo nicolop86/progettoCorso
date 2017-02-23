@@ -32,10 +32,12 @@ public class Car extends Resource<Car> {
 	public void setnDrivers(int nDrivers) {
 		this.nDrivers = nDrivers;
 	}
-	
+
 	public String toString() {
-		String s = ("Car ID: " + this.getID() + "\nNumberplate: " + this.getNUMBERPLATE() +
-				"\nNumber of seats: " + this.getnSeats()+ "\nNumber of drivers: " + this.getnDrivers());
+		String s = ("Car ID: " + this.getID() + "\nNumberplate: " +
+				this.getNUMBERPLATE() + "\nNumber of seats: " + this.getnSeats()+
+				"\nNumber of drivers: " + this.getnDrivers() +
+				"\nAvailable: " + this.isAvailable());
 		return s;
 	}
 
@@ -46,10 +48,10 @@ public class Car extends Resource<Car> {
 			return false;
 		}
 	}
-	
-	public boolean selectByConstratint(int nSeat) {
+
+	public boolean selectByConstratin(int nSeat) {
 		if (this.nSeats>=nSeat) {
-		return true;
+			return true;
 		} else {
 			return false;
 		}

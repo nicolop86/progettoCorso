@@ -24,8 +24,9 @@ public class Projector extends Resource<Projector> {
 	}
 
 	public String toString() {
-		String s = ("Projector ID: " + this.getID() + "\nColors: " + this.getnColors() +
-				"\nBrand: " + this.getBRAND());
+		String s = ("Projector ID: " + this.getID() + "\nColors: " +
+				this.getnColors() + "\nBrand: " + this.getBRAND() +
+				"\nAvailable: " + this.isAvailable());
 		return s;
 	}
 
@@ -37,7 +38,7 @@ public class Projector extends Resource<Projector> {
 		}
 	}
 
-	public boolean selectByConstratint(int nColors) {
+	public boolean selectByConstratin(int nColors) {
 		if(this.nColors>=nColors){
 			return true;
 		} else {

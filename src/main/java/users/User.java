@@ -1,12 +1,12 @@
 package users;
 
 import java.util.Date;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import identifier.Identifiable;
-import managers.UserManager;
 
 public class User implements Identifiable<String> {
 
@@ -21,7 +21,7 @@ public class User implements Identifiable<String> {
 	private boolean penalty;
 	
 	public User (String name, String surname, String identifier,
-			Date birthday, String userName, String pwd, UserManager uManager) {
+			Date birthday, String userName, String pwd) {
 		this.name = name;
 		this.surname = surname;
 		this.identifier = identifier;

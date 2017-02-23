@@ -1,7 +1,6 @@
 package managers;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import dao.DAO;
 import resources.Resource;
@@ -12,11 +11,11 @@ public class ResourceManager<T extends Resource<?>> extends Manager<Integer, T >
 		super(dao);
 	}
 
-	public List<T> returnByConstraint (int param) {
+	public ArrayList<T> returnByConstrain(int param) {
 		ArrayList<T> listResources = new ArrayList<>();
 		ArrayList<T> allResources = getAllRecords();
 		for (T resource : allResources) {
-			if(resource.selectByConstratint(param)) {
+			if(resource.selectByConstratin(param)) {
 				listResources.add(resource);
 			}
 		}

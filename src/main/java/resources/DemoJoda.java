@@ -14,7 +14,7 @@ public class DemoJoda {
 		System.out.println(start);
 		System.out.println(expiration);
 		System.out.println(Days.daysBetween(start, expiration).getDays());
-		
+		System.out.println(new DateTime().toDate());
 		System.out.println("---------");
 		
 		if (temp.isAfter(expiration)) {

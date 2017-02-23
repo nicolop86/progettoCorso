@@ -1,26 +1,34 @@
 package booking;
 
 import java.util.Date;
+
+import org.joda.time.DateTime;
+
 import identifier.Identifiable;
 import resources.Resource;
 import users.User;
 
-public class Booking implements Identifiable<Integer> {
-	
+public class Booking <T extends Resource<T>> implements Identifiable<Integer> {
+
 	private User user;
-	private Resource<?> resource;
+	private T resource;
 	private Date dateStart;
 	private Date dateFinish;
 	private int ID;
 	private boolean closed;
-	
-	public Booking(User user, Resource<?> resource, Date dateStart, Date dateFinish, int ID) {
+
+	public Booking(User user, T resource, Date dateStart, Date dateFinish, int ID) {
 		this.setUser(user);
 		this.setResource(resource);
 		this.setDateStart(dateStart);
 		this.setDateFinish(dateFinish);
 		this.setID(ID);
-		this.setClosed(false);
+		if(new DateTime().isAfter(new DateTime(dateFinish))) {
+			/*This option may never be used when entering a new reservation*/
+			this.setClosed(true);
+		} else {
+			this.setClosed(false);
+		}
 	}
 
 	public User getUser() {
@@ -31,11 +39,11 @@ public class Booking implements Identifiable<Integer> {
 		this.user = user;
 	}
 
-	public Resource<?> getResource() {
+	public T getResource() {
 		return resource;
 	}
 
-	public void setResource(Resource<?> resource) {
+	public void setResource(T resource) {
 		this.resource = resource;
 	}
 
@@ -62,11 +70,12 @@ public class Booking implements Identifiable<Integer> {
 	public void setID(int ID) {
 		this.ID = ID;
 	}
-	
+
 	public String toString() {
 		return("Reservation: " + this.getID() + "\n" + resource.toString() +
 				"\n" + user.toString() + "\nDate Start: " + this.dateStart.toString() + 
-				"\nDate Finish: " + this.dateFinish.toString());
+				"\nDate Finish: " + this.dateFinish.toString() + 
+				"\nReservation status (closed?): " + this.isClosed());
 	}
 
 	public boolean isClosed() {

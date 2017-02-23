@@ -10,7 +10,7 @@ import identifier.Identifiable;
 public class Manager <K, T extends Identifiable<?>> {
 
 	protected DAO<K, T> dao;
-
+	
 	public Manager(DAO<K, T> dao) {
 		this.dao = dao;
 	}
@@ -30,6 +30,15 @@ public class Manager <K, T extends Identifiable<?>> {
 		TreeMap<K, T> tMap = dao.getMap();
 		if(tMap.containsKey((K) t.getID())) {
 			dao.deleteRecord(t);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean deleteRecord(K ID) {
+		if(dao.getMap().containsKey(ID)) {
+			dao.deleteRecord(ID);
 			return true;
 		} else {
 			return false;

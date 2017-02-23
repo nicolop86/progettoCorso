@@ -29,7 +29,8 @@ public class Room extends Resource<Room> {
 
 	public String toString() {
 		String s = ("Room ID: " + this.getID() + "\nCapacity: " + this.getCapacity() +
-				"\nRoom name: " + this.getName());
+				"\nRoom name: " + this.getName() +
+				"\nAvailable: " + this.isAvailable());
 		return s;
 	}
 	
@@ -41,7 +42,7 @@ public class Room extends Resource<Room> {
 		}
 	}
 	
-	public boolean selectByConstratint(int capacity) {
+	public boolean selectByConstratin(int capacity) {
 		if(this.capacity>=capacity){
 			return true;
 		} else {
