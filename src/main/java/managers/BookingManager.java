@@ -9,6 +9,7 @@ import org.joda.time.Interval;
 import booking.Booking;
 import dao.DAO;
 import resources.Resource;
+import users.User;
 
 public class BookingManager <T extends Resource<T>> extends Manager<Integer, Booking<T>>{
 
@@ -30,9 +31,8 @@ public class BookingManager <T extends Resource<T>> extends Manager<Integer, Boo
 			ArrayList<Booking<T>> bList = getAllRecords();
 			/*Subroutine to get all instances of that resource in booking*/
 			for (Booking<T> booking : bList) {
-				T c = booking.getResource();
 				/*If reservation is open and resource is the same and dates overlap then return false*/
-				if(c.equals(b.getResource()) && !booking.isClosed() &&  
+				if(booking.getResource().equals(b.getResource()) && !booking.isClosed() &&  
 						dateOverlapping(booking.getDateStart(), b.getDateStart(),
 								booking.getDateFinish(), b.getDateFinish())) {
 					return false;
@@ -47,16 +47,52 @@ public class BookingManager <T extends Resource<T>> extends Manager<Integer, Boo
 
 	@Override
 	public boolean updateRecord(Booking<T> b){
-		if(dao.getMap().containsKey(b.getID()) && !dao.getMap().get(b.getID()).isClosed() &&
-				!dateOverlapping(dao.getMap().get(b.getID()).getDateStart(), b.getDateStart(),
-						dao.getMap().get(b.getID()).getDateFinish(), b.getDateFinish())){
-			dao.updateRecord(b);
-			return true;
-		} else {
-			return false;
+		/*First, check if booking is open and Id is contained in map*/
+		if (dao.getMap().containsKey(b.getID()) && !dao.getMap().get(b.getID()).isClosed()) {
+			ArrayList<Booking<T>> bList = getAllRecords();
+			/*Remove the same reservation from array list*/
+			bList.remove(dao.getMap().get(b.getID()));
+			/*Subroutine to get all instances of that resource in booking*/
+			if (bList.isEmpty()) {
+				dao.updateRecord(b);
+				return true;
+			}
+			for (Booking<T> booking : bList) {
+				/*If reservation is not the same and resource is the same and dates do not overlap then update*/
+				if(booking.getResource().equals(b.getResource()) &&
+						!dateOverlapping(booking.getDateStart(), b.getDateStart(),
+								booking.getDateFinish(), b.getDateFinish())) {
+					dao.updateRecord(b);
+					return true;
+				}
+			}
 		}
+		return false;
 	}
 
+	public boolean updateRecord(Integer ID, User u, Resource<T> t, Date dateStart, Date dateFinish){
+		/*First, check if booking is open*/
+		if (dao.getMap().containsKey(ID) &&!dao.getMap().get(ID).isClosed()) {		
+			ArrayList<Booking<T>> bList = getAllRecords();
+			/*Remove the same reservation from array list*/
+			bList.remove(dao.getMap().get(ID));
+			if (bList.isEmpty()) {
+				dao.updateRecord(new Booking<T>(u, t, dateStart, dateFinish, ID));
+				return true;
+			}
+			for (Booking<T> booking : bList) {
+				/*If reservation is not the same and resource is the same and dates do not overlap then update*/
+				if(t.equals(booking.getResource()) && booking.getID()!=ID &&
+						!dateOverlapping(booking.getDateStart(), dateStart,
+								booking.getDateFinish(), dateFinish)) {
+					dao.updateRecord(new Booking<T>(u, t, dateStart, dateFinish, ID));
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	/*Method used when customer picks up a resource*/
 	public boolean checkIn(Integer ID){
 		if(dao.getMap().containsKey(ID) && !dao.getMap().get(ID).isClosed() &&
@@ -99,7 +135,7 @@ public class BookingManager <T extends Resource<T>> extends Manager<Integer, Boo
 		temp1.withDate(2100, 12, 31);
 		/*Subroutine to get all instances of res in booking*/
 		for (Booking<T> booking : bList) {
-			T c = booking.getResource();
+			Resource<T> c = booking.getResource();
 			if(!booking.isClosed() && c.equals(res)) {
 				if(temp1.isAfter(new DateTime(booking.getDateStart()))) {
 					temp1 = new DateTime(booking.getDateStart());

@@ -1,6 +1,7 @@
 package managers;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import dao.DAO;
 import users.User;
@@ -26,6 +27,16 @@ public class UserManager extends Manager<String, User> {
 	public boolean logout(User u){
 		if(u.isLogged()) {
 			u.setLogged(false);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean updateRecord(String ID, String name, String surname,
+			Date birthday, String userName, String pwd){
+		if(dao.getMap().containsKey(ID)){
+			dao.updateRecord(new User(name, surname, ID, birthday, userName, pwd));
 			return true;
 		} else {
 			return false;

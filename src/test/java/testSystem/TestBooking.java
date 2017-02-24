@@ -1,7 +1,5 @@
 package testSystem;
 
-import java.util.Date;
-
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
@@ -136,12 +134,14 @@ public class TestBooking {
 		Car c3 = new Car(9, "CC 674 RE", 2, 1);
 		Assert.assertEquals(true, bCarManager.createRecord
 				(new Booking<Car>(u2, c3, new DateTime(2017, 3, 1, 8, 0).toDate(), new DateTime(2017, 3, 4, 8, 0).toDate(), 6)));
+		
+		
 		/*Test on updating records*/
 		/*Checking that a booking with no ID in booking table cannot be updated*/
 		Assert.assertEquals(false, bPcManager.updateRecord
 				(new Booking<Laptop>(u2, pc1, new DateTime(2017, 3, 1, 10, 0).toDate(), new DateTime(2017, 3, 2, 14, 0).toDate(), 100)));
 		/*Checking that update with overlapping dates with another reservation is not possible*/
-		Booking<Car> b6 = new Booking<Car>(u2, c1, new DateTime(2017, 3, 3, 8, 0).toDate(), new DateTime(2017, 3, 3, 18, 0).toDate(), 7);
+		Booking<Car> b6 = new Booking<Car>(u2, c1, new DateTime(2017, 3, 3, 8, 0).toDate(), new DateTime(2017, 3, 3, 18, 0).toDate(), 5);
 		Assert.assertEquals(false, bCarManager.updateRecord(new Booking<Car>(b6.getUser(), b6.getResource(), new DateTime(2017, 3, 1, 8, 0).toDate(),
 				b6.getDateFinish(), b6.getID())));
 		/*Checking that update of a closed reservation cannot be done*/
@@ -150,7 +150,13 @@ public class TestBooking {
 		/*Checking that a booking with ID in booking table can be updated*/
 		Assert.assertEquals(true, bProjManager.updateRecord
 				(new Booking<Projector>(u2, proj1, new DateTime(2017, 3, 1, 8, 0).toDate(), new DateTime(2017, 3, 1, 18, 0).toDate(), b4.getID())));
-
+		Assert.assertEquals(true, bProjManager.updateRecord(3, u1, proj1,
+				new DateTime(2017, 3, 1, 8, 0).toDate(), new DateTime(2017, 3, 1, 18, 0).toDate()));
+		Assert.assertEquals(true, bCarManager.updateRecord(new Booking<Car>(b6.getUser(), b6.getResource(), new DateTime(2017, 5, 1, 8, 0).toDate(),
+				new DateTime(2017, 5, 2, 8, 0).toDate(), b6.getID())));
+		Assert.assertEquals(true, bCarManager.updateRecord(b6.getID(), b6.getUser(), b6.getResource(),
+				new DateTime(2017, 5, 3, 8, 0).toDate(), new DateTime(2017, 5, 5, 18, 0).toDate()));
+	
 		/*Checking first availability method*/
 		Assert.assertEquals(new DateTime(2017, 3, 2, 10, 0).toDate(), bCarManager.getFirstAvailability(c1));
 		Assert.assertEquals(new DateTime().toDate(), bProjManager.getFirstAvailability(proj1));
@@ -169,7 +175,7 @@ public class TestBooking {
 
 		/*Checkout method on an almost expired booking*/
 		Booking<Projector> b7 = new Booking<Projector>(u1, proj1,
-				new DateTime(2017, 2, 23, 10, 0).toDate(), new DateTime(2017, 2, 23, 18, 0).toDate(), 8);
+				new DateTime(2017, 2, 24, 10, 0).toDate(), new DateTime(2017, 2, 24, 18, 0).toDate(), 8);
 		bProjManager.createRecord(b7);
 		bProjManager.checkIn(8);
 		Assert.assertEquals(true, bProjManager.checkOut(8));

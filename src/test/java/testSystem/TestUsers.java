@@ -53,6 +53,8 @@ public class TestUsers {
 		Assert.assertEquals(true, uManager.updateRecord(new User("Niccolò",
 				"Politi", "PLTNCL86H01M109C", new DateTime(1986, 6, 1, 0, 0).toDate(),
 				"nicolo.politi", "pippo")));
+		Assert.assertEquals(true, uManager.updateRecord("PLTNCL86H01M109C", "Nicolò",
+				"Politi", new DateTime(1986, 6, 1, 0, 0).toDate(), "nicolo.politi", "nick86"));
 		Assert.assertEquals(false, uManager.updateRecord(u2));
 		Assert.assertEquals(true, uManager.createRecord(u2));
 		Assert.assertEquals(false, uManager.createRecord(u2));

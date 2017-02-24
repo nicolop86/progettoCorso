@@ -11,15 +11,15 @@ import users.User;
 public class Booking <T extends Resource<T>> implements Identifiable<Integer> {
 
 	private User user;
-	private T resource;
+	private Resource<T> resource;
 	private Date dateStart;
 	private Date dateFinish;
 	private int ID;
 	private boolean closed;
 
-	public Booking(User user, T resource, Date dateStart, Date dateFinish, int ID) {
+	public Booking(User user, Resource<T> t, Date dateStart, Date dateFinish, int ID) {
 		this.setUser(user);
-		this.setResource(resource);
+		this.setResource(t);
 		this.setDateStart(dateStart);
 		this.setDateFinish(dateFinish);
 		this.setID(ID);
@@ -39,12 +39,12 @@ public class Booking <T extends Resource<T>> implements Identifiable<Integer> {
 		this.user = user;
 	}
 
-	public T getResource() {
+	public Resource<T> getResource() {
 		return resource;
 	}
 
-	public void setResource(T resource) {
-		this.resource = resource;
+	public void setResource(Resource<T> t) {
+		this.resource = t;
 	}
 
 	public Date getDateStart() {
