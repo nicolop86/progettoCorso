@@ -2,7 +2,7 @@ package resources;
 
 import identifier.Identifiable;
 
-public abstract class Resource<T extends Resource<T>> implements Identifiable<Integer> {
+public abstract class Resource<T> implements Identifiable<Integer> {
 	
 	private int ID;
 	private boolean isAvailable;
@@ -17,7 +17,7 @@ public abstract class Resource<T extends Resource<T>> implements Identifiable<In
 	}
 
 	public abstract String toString();
-	public abstract boolean equals(T t);
+	public abstract boolean equals(Resource<T> t);
 	public abstract boolean selectByConstratin(int param);
 
 	public boolean isAvailable() {

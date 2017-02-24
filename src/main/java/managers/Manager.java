@@ -7,7 +7,7 @@ import java.util.TreeMap;
 import dao.DAO;
 import identifier.Identifiable;
 
-public class Manager <K, T extends Identifiable<?>> {
+public class Manager <K, T extends Identifiable<K>> {
 
 	protected DAO<K, T> dao;
 	
@@ -17,7 +17,7 @@ public class Manager <K, T extends Identifiable<?>> {
 
 	public boolean createRecord(T t) {
 		TreeMap<K, T> tMap = dao.getMap();
-		if(tMap.containsKey((K) t.getID())){
+		if(tMap.containsKey(t.getID())){
 			System.err.println("Error: ID already exists!\n");
 			return false;	
 		} else {
@@ -28,7 +28,7 @@ public class Manager <K, T extends Identifiable<?>> {
 
 	public boolean deleteRecord(T t) {
 		TreeMap<K, T> tMap = dao.getMap();
-		if(tMap.containsKey((K) t.getID())) {
+		if(tMap.containsKey(t.getID())) {
 			dao.deleteRecord(t);
 			return true;
 		} else {
@@ -47,7 +47,7 @@ public class Manager <K, T extends Identifiable<?>> {
 
 	public boolean updateRecord(T t){
 		TreeMap<K, T> tMap = dao.getMap();
-		if(tMap.containsKey((K) t.getID())) {
+		if(tMap.containsKey(t.getID())) {
 			dao.updateRecord(t);
 			return true;
 		} else {
@@ -66,7 +66,7 @@ public class Manager <K, T extends Identifiable<?>> {
 	
 	public T getElement(K ID) {
 		TreeMap<K, T> tMap = dao.getMap();
-		if(tMap.containsKey((K) ID)) {
+		if(tMap.containsKey(ID)) {
 			return tMap.get(ID);
 		} else {
 			return null;

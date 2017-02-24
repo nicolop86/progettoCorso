@@ -41,8 +41,9 @@ public class Car extends Resource<Car> {
 		return s;
 	}
 
-	public boolean equals(Car c) {
-		if (this.getID() == c.getID()) {
+	@Override
+	public boolean equals(Resource<Car> t) {
+		if (this.getID() == t.getID()) {
 			return true;
 		} else {
 			return false;

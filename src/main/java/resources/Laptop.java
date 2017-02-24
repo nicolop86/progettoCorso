@@ -39,16 +39,17 @@ public class Laptop extends Resource<Laptop> {
 		return s;
 	}
 	
-	public boolean equals(Laptop pc){
-		if (this.getID() == pc.getID()) {
+	public boolean selectByConstratin(int ram) {
+		if(this.ram>=ram){
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	public boolean selectByConstratin(int ram) {
-		if(this.ram>=ram){
+
+	@Override
+	public boolean equals(Resource<Laptop> t) {
+		if (this.getID() == t.getID()) {
 			return true;
 		} else {
 			return false;

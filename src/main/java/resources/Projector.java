@@ -30,14 +30,6 @@ public class Projector extends Resource<Projector> {
 		return s;
 	}
 
-	public boolean equals(Projector proj){
-		if (this.getID() == proj.getID()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	public boolean selectByConstratin(int nColors) {
 		if(this.nColors>=nColors){
 			return true;
@@ -45,4 +37,14 @@ public class Projector extends Resource<Projector> {
 			return false;
 		}
 	}
+
+	@Override
+	public boolean equals(Resource<Projector> t) {
+		if (this.getID() == t.getID()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

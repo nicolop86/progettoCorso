@@ -8,7 +8,7 @@ import identifier.Identifiable;
 import resources.Resource;
 import users.User;
 
-public class Booking <T extends Resource<T>> implements Identifiable<Integer> {
+public class Booking <T> implements Identifiable<Integer> {
 
 	private User user;
 	private Resource<T> resource;

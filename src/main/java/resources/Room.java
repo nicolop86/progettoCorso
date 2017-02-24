@@ -34,16 +34,17 @@ public class Room extends Resource<Room> {
 		return s;
 	}
 	
-	public boolean equals(Room room){
-		if (this.getID() == room.getID()) {
+	public boolean selectByConstratin(int capacity) {
+		if(this.capacity>=capacity){
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	public boolean selectByConstratin(int capacity) {
-		if(this.capacity>=capacity){
+
+	@Override
+	public boolean equals(Resource<Room> t) {
+		if (this.getID() == t.getID()) {
 			return true;
 		} else {
 			return false;
