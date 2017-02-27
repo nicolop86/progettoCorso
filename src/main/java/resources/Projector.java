@@ -1,6 +1,6 @@
 package resources;
 
-public class Projector extends Resource<Projector> {
+public class Projector extends Resource {
 
 	private int nColors;
 	private final String BRAND;
@@ -39,7 +39,7 @@ public class Projector extends Resource<Projector> {
 	}
 
 	@Override
-	public boolean equals(Resource<Projector> t) {
+	public boolean equals(Resource t) {
 		if (this.getID() == t.getID()) {
 			return true;
 		} else {

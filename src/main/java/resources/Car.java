@@ -1,6 +1,6 @@
 package resources;
 
-public class Car extends Resource<Car> {
+public class Car extends Resource {
 
 	private final String NUMBERPLATE;
 	private int nSeats;
@@ -42,7 +42,7 @@ public class Car extends Resource<Car> {
 	}
 
 	@Override
-	public boolean equals(Resource<Car> t) {
+	public boolean equals(Resource t) {
 		if (this.getID() == t.getID()) {
 			return true;
 		} else {

@@ -11,7 +11,7 @@ import dao.DAO;
 import resources.Resource;
 import users.User;
 
-public class BookingManager <T extends Resource<T>> extends Manager<Integer, Booking<T>>{
+public class BookingManager <T extends Resource> extends Manager<Integer, Booking<T>>{
 
 	public BookingManager(DAO<Integer, Booking<T>> dao) {
 		super(dao);
@@ -70,7 +70,7 @@ public class BookingManager <T extends Resource<T>> extends Manager<Integer, Boo
 		return false;
 	}
 
-	public boolean updateRecord(Integer ID, User u, Resource<T> t, Date dateStart, Date dateFinish){
+	public boolean updateRecord(Integer ID, User u, T t, Date dateStart, Date dateFinish){
 		/*First, check if booking is open*/
 		if (dao.getMap().containsKey(ID) &&!dao.getMap().get(ID).isClosed()) {		
 			ArrayList<Booking<T>> bList = getAllRecords();
@@ -135,7 +135,7 @@ public class BookingManager <T extends Resource<T>> extends Manager<Integer, Boo
 		temp1.withDate(2100, 12, 31);
 		/*Subroutine to get all instances of res in booking*/
 		for (Booking<T> booking : bList) {
-			Resource<T> c = booking.getResource();
+			Resource c = booking.getResource();
 			if(!booking.isClosed() && c.equals(res)) {
 				if(temp1.isAfter(new DateTime(booking.getDateStart()))) {
 					temp1 = new DateTime(booking.getDateStart());
@@ -147,7 +147,7 @@ public class BookingManager <T extends Resource<T>> extends Manager<Integer, Boo
 	}
 
 	/*Method to check availability of a resource*/
-	public boolean checkResourceAvailability(Resource<T> r) {
+	public boolean checkResourceAvailability(Resource r) {
 		return r.isAvailable();
 	}
 

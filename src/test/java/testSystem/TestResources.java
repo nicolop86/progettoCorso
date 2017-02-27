@@ -48,7 +48,7 @@ public class TestResources {
 
 	@Test
 	public void test() {
-		DAO <Integer, Car> daoCar = new DAO<Integer, Car>(carList);
+		DAO<Integer, Car> daoCar = new DAO<Integer, Car>(carList);
 		ResourceManager<Car> carManager = new ResourceManager<Car>(daoCar);
 		DAO <Integer, Room> daoRoom = new DAO<Integer, Room>(roomList);
 		ResourceManager<Room> roomManager = new ResourceManager<Room>(daoRoom);

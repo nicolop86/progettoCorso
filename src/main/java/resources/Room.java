@@ -1,6 +1,6 @@
 package resources;
 
-public class Room extends Resource<Room> {
+public class Room extends Resource {
 
 	private int capacity;
 	private String name;
@@ -43,7 +43,7 @@ public class Room extends Resource<Room> {
 	}
 
 	@Override
-	public boolean equals(Resource<Room> t) {
+	public boolean equals(Resource t) {
 		if (this.getID() == t.getID()) {
 			return true;
 		} else {

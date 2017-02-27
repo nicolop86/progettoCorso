@@ -175,7 +175,7 @@ public class TestBooking {
 
 		/*Checkout method on an almost expired booking*/
 		Booking<Projector> b7 = new Booking<Projector>(u1, proj1,
-				new DateTime(2017, 2, 24, 10, 0).toDate(), new DateTime(2017, 2, 24, 18, 0).toDate(), 8);
+				new DateTime(2017, 2, 27, 8, 0).toDate(), new DateTime(2017, 2, 27, 12, 0).toDate(), 8);
 		bProjManager.createRecord(b7);
 		bProjManager.checkIn(8);
 		Assert.assertEquals(true, bProjManager.checkOut(8));

@@ -1,6 +1,6 @@
 package resources;
 
-public class Laptop extends Resource<Laptop> {
+public class Laptop extends Resource {
 
 	private int ram;
 	private int nCores;
@@ -48,7 +48,7 @@ public class Laptop extends Resource<Laptop> {
 	}
 
 	@Override
-	public boolean equals(Resource<Laptop> t) {
+	public boolean equals(Resource t) {
 		if (this.getID() == t.getID()) {
 			return true;
 		} else {
