@@ -11,11 +11,11 @@ public class ResourceManager<T extends Resource> extends Manager<Integer, T> {
 		super(dao);
 	}
 
-	public ArrayList<T> returnByConstrain(int param) {
+	public ArrayList<T> returnByConstraint(int param) {
 		ArrayList<T> listResources = new ArrayList<T>();
 		ArrayList<T> allResources = getAllRecords();
 		for (T resource : allResources) {
-			if(resource.selectByConstratin(param)) {
+			if(resource.selectByConstraint(param)) {
 				listResources.add(resource);
 			}
 		}

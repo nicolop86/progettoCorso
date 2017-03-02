@@ -39,7 +39,7 @@ public class Laptop extends Resource {
 		return s;
 	}
 	
-	public boolean selectByConstratin(int ram) {
+	public boolean selectByConstraint(int ram) {
 		if(this.ram>=ram){
 			return true;
 		} else {

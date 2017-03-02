@@ -34,7 +34,7 @@ public class Room extends Resource {
 		return s;
 	}
 	
-	public boolean selectByConstratin(int capacity) {
+	public boolean selectByConstraint(int capacity) {
 		if(this.capacity>=capacity){
 			return true;
 		} else {

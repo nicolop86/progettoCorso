@@ -102,8 +102,8 @@ public class TestBooking {
 		roomManager = new ResourceManager<>(daoRoom);
 
 		/*Creating reservations*/
-		b1 = new Booking<Car>(u1, c1, new DateTime(2017, 2, 14, 8, 0).toDate(), new DateTime(2017, 3, 2, 10, 0).toDate(), 0);
-		b2 = new Booking<Laptop>(u2, pc1, new DateTime(2017, 2, 28, 14, 0).toDate(), new DateTime(2017, 3, 1, 18, 0).toDate(), 1);
+		b1 = new Booking<Car>(u1, c1, new DateTime(2017, 2, 14, 8, 0).toDate(), new DateTime(2017, 3, 4, 18, 0).toDate(), 0);
+		b2 = new Booking<Laptop>(u2, pc1, new DateTime(2017, 2, 28, 14, 0).toDate(), new DateTime(2017, 4, 1, 18, 0).toDate(), 1);
 		b3 = new Booking<Laptop>(u1, pc1, new DateTime(2017, 2, 10, 10, 0).toDate(), new DateTime(2017, 2, 15, 14, 0).toDate(), 2);
 		b4 = new Booking<Projector>(u2, proj1, new DateTime(2017, 3, 20, 10, 0).toDate(), new DateTime(2017, 3, 21, 14, 0).toDate(), 3);
 		b5 = new Booking<Room>(u1, room1, new DateTime(2017, 3, 20, 10, 0).toDate(), new DateTime(2017, 3, 21, 14, 0).toDate(), 4);
@@ -123,7 +123,7 @@ public class TestBooking {
 		/*Checking that free resources can be reserved*/
 		Assert.assertEquals(false, b1.isClosed());
 		Assert.assertEquals(true, bCarManager.createRecord
-				(new Booking<Car>(u2, c2, new DateTime(2017, 3, 1, 8, 0).toDate(), new DateTime(2017, 3, 2, 10, 0).toDate(), 5)));
+				(new Booking<Car>(u2, c2, new DateTime(2017, 3, 1, 8, 0).toDate(), new DateTime(2017, 3, 3, 10, 0).toDate(), 5)));
 		/*Checking that same ID gives false*/
 		Assert.assertEquals(false, bCarManager.createRecord
 				(new Booking<Car>(u2, c2, new DateTime(2017, 4 , 1, 8, 0).toDate(), new DateTime(2017, 4, 2, 10, 0).toDate(), 5)));
@@ -149,16 +149,16 @@ public class TestBooking {
 				(new Booking<Laptop>(u1, pc1, new DateTime(2017, 3, 1, 8, 0).toDate(), new DateTime(2017, 3, 1, 18, 0).toDate(), 2)));
 		/*Checking that a booking with ID in booking table can be updated*/
 		Assert.assertEquals(true, bProjManager.updateRecord
-				(new Booking<Projector>(u2, proj1, new DateTime(2017, 3, 1, 8, 0).toDate(), new DateTime(2017, 3, 1, 18, 0).toDate(), b4.getID())));
+				(new Booking<Projector>(u2, proj1, new DateTime(2018, 3, 1, 8, 0).toDate(), new DateTime(2018, 3, 1, 18, 0).toDate(), b4.getID())));
 		Assert.assertEquals(true, bProjManager.updateRecord(3, u1, proj1,
-				new DateTime(2017, 3, 1, 8, 0).toDate(), new DateTime(2017, 3, 1, 18, 0).toDate()));
+				new DateTime(2017, 4, 1, 8, 0).toDate(), new DateTime(2017, 4, 1, 18, 0).toDate()));
 		Assert.assertEquals(true, bCarManager.updateRecord(new Booking<Car>(b6.getUser(), b6.getResource(), new DateTime(2017, 5, 1, 8, 0).toDate(),
 				new DateTime(2017, 5, 2, 8, 0).toDate(), b6.getID())));
 		Assert.assertEquals(true, bCarManager.updateRecord(b6.getID(), b6.getUser(), b6.getResource(),
 				new DateTime(2017, 5, 3, 8, 0).toDate(), new DateTime(2017, 5, 5, 18, 0).toDate()));
 	
 		/*Checking first availability method*/
-		Assert.assertEquals(new DateTime(2017, 3, 2, 10, 0).toDate(), bCarManager.getFirstAvailability(c1));
+		Assert.assertEquals(new DateTime(2017, 3, 4, 18, 0).toDate(), bCarManager.getFirstAvailability(c1));
 		Assert.assertEquals(new DateTime().toDate(), bProjManager.getFirstAvailability(proj1));
 
 		/*Checking if a resource is available*/
@@ -171,11 +171,11 @@ public class TestBooking {
 		Assert.assertEquals("Reservation: 0\nCar ID: 0\nNumberplate: AZ 007 ZY\nNumber of seats: 4\nNumber of drivers: 1"
 				+ "\nAvailable: false\nName: Nicolò\nSurname: Politi\n"
 				+ "Identifier: PLTNCL86H01M109C\nBirth date: 01-06-1986\nDate Start: Tue Feb 14 08:00:00 CET 2017"
-				+ "\nDate Finish: Thu Mar 02 10:00:00 CET 2017\nReservation status (closed?): false", b1.toString());
+				+ "\nDate Finish: Sat Mar 04 18:00:00 CET 2017\nReservation status (closed?): false", b1.toString());
 
 		/*Checkout method on an almost expired booking*/
 		Booking<Projector> b7 = new Booking<Projector>(u1, proj1,
-				new DateTime(2017, 2, 27, 8, 0).toDate(), new DateTime(2017, 2, 27, 12, 0).toDate(), 8);
+				new DateTime(2017, 3, 2, 8, 0).toDate(), new DateTime(2017, 3, 2, 16, 0).toDate(), 8);
 		bProjManager.createRecord(b7);
 		bProjManager.checkIn(8);
 		Assert.assertEquals(true, bProjManager.checkOut(8));

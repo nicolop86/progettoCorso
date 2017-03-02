@@ -85,10 +85,10 @@ public class TestResources {
 
 		/*Tests on select by constraint*/
 
-		ArrayList<Car> restrictedCarList = carManager.returnByConstrain(5);
-		ArrayList<Laptop> restrictedPcList = pcManager.returnByConstrain(4);
-		ArrayList<Projector> restrictedProjList = projManager.returnByConstrain(256);
-		ArrayList<Room> restrictedRoomList = roomManager.returnByConstrain(20);
+		ArrayList<Car> restrictedCarList = carManager.returnByConstraint(5);
+		ArrayList<Laptop> restrictedPcList = pcManager.returnByConstraint(4);
+		ArrayList<Projector> restrictedProjList = projManager.returnByConstraint(256);
+		ArrayList<Room> restrictedRoomList = roomManager.returnByConstraint(20);
 
 		ArrayList<Car> aCarArray = new ArrayList<>();
 		aCarArray.add(new Car(1, "YY 938 NN", 5, 1));

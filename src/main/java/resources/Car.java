@@ -50,7 +50,7 @@ public class Car extends Resource {
 		}
 	}
 
-	public boolean selectByConstratin(int nSeat) {
+	public boolean selectByConstraint(int nSeat) {
 		if (this.nSeats>=nSeat) {
 			return true;
 		} else {
